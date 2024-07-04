@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    width: 600px;
+}
+.container .header{
+    background-color:rgb(204, 132, 50);
+    padding: 15px 40px 30px;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+}
+.container .header h2{
+    font-size: 35px;
+    margin: 10px;
+    
+}
+
+/* style input */
+
+input{
+    width: 75%;
+    float: left;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* add button style */
+.addBtn{
+    width: 25%;
+    float: left;
+    border: none;
+    padding: 10px;
+    background-color: #d9d9d9;
+    color: #555;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.addBtn:hover{
+    background-color: #bbb;
+}
+.container .header::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.container .taskList {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.taskList{
+    list-style-type: none;
+}
+
+.taskList li{
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.3s;
+    user-select: none;
+}
+.taskList li:hover{
+    background: rgb(205, 204, 204);
+}
+
+.closeBtn{
+    display: none;
+    position: absolute;
+    right: 15px;
+}
+ul li:hover .closeBtn{
+    display: inline-block;
+}
+ul li .closeBtn i:hover{
+    color: red;
+}
+
+.taskList li.done{
+    background-color: #888;
+    color : #fff;
+    text-decoration: line-through;
+}
+
+.taskList li.done::before{
+    content: '';
+    width: 10px;
+    height: 16px;
+    position:absolute;
+    left: 15px;
+    top: 8px;
+    /* background-color: black; */
+    border-color: #fff;
+    border-width: 0 2px 2px 0;
+    border-style: solid;
+    transform: rotate(45deg);
+}
