@@ -1,6 +1,7 @@
 import { createContext, useState  } from "react"
+import { getProductData } from "../data/item"
 
-export const cartContext = createContext({
+export const CartContext = createContext({
     items: [],
     getProductQuantity: () =>{},
     addProduct: () => {},
@@ -9,7 +10,7 @@ export const cartContext = createContext({
     getTotalAmount: () => {}
 })
 
-export function cardProvider ({ children }) {
+export function CardProvider ({ children }) {
     const [cartProduct, setCartProduct] = useState([])
 
     function getProductQuantity (id) {
@@ -35,7 +36,34 @@ export function cardProvider ({ children }) {
 
     // delete from car 
     function deleteCard (id) {
-        setCartProduct(cartProduct.filter(item => item.id !== id))
+        setCartProduct((cartProduct) => 
+            cartProduct.filter((item) => {
+                return item.id !== id
+            }))
+    }
+
+    // remove item from cart, just remove one item like --1
+    function removeProduct  (id) {
+        const quantity = getProductQuantity(id)
+
+        if ( quantity === 1) {
+            deleteCard(id)
+        } else {
+            setCartProduct(cartProduct.map((item) => item.id === id ? {
+                ...item, quantity: item.quantity - 1}: item ))
+            }
+
+        }
+    // get me total price
+    function getTotalAmount () {
+        let totalPrice = 0
+
+        cartProduct.map((item) => {
+            const productData = getProductData(item.id)
+
+            totalPrice += productData.price * item.quantity
+        })
+        return totalPrice
     }
 
 
@@ -45,10 +73,10 @@ export function cardProvider ({ children }) {
         addProduct,
         removeProduct,
         deleteCard,
-        getTotalAmount,
+        getTotalAmount
     }
 
     return (
-        <cartContext.Provider value={contextValue}>{children}</cartContext.Provider>
+        <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
     )
 }
