@@ -1,5 +1,6 @@
 # React + Vite
-### `Install npm, bootstraps` 
+### `Install npm, bootstrap` 
 
 ### `npm start`
 npm run dev
+http://localhost:5173/
