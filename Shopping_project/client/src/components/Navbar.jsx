@@ -14,14 +14,21 @@ function Navbar () {
     }
     const handleClose = () =>{setShowModal(false)}
 
-    async function checkout () {
-        await fetch('http://localhost:3000/api', {
-
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({items:cart.items})
-
-    })
+    async function checkout() {
+        console.log("m,nashdmjka");
+        const response = await fetch('http://localhost:3000/api', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: cart.items }),
+        })
+        console.log("m,nashdmjka");
+    
+        const data = await response.json()
+    
+        if (data.url) {
+          window.location.assign(data.url)
+        }
+        
     }
 
     return (
@@ -47,7 +54,7 @@ function Navbar () {
                         ) : (
                             <h3 className='text-center'>Your bag is empty</h3>
                         )}
-                        <Button onClick={checkout} className='mt-4' variant='btn btn-light'>Order</Button>
+                        <Button className='mt-4' variant='btn btn-light' onClick={checkout}>Order</Button>
                         <Button onClick={handleClose} variant='btn btn-outline-secondary' className='mt-4 mx-3 text-white' >Close</Button>
                     </Modal.Body>
                 </Modal.Header>

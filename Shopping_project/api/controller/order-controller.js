@@ -7,7 +7,7 @@ async function createOrder (req, res) {
 
     await newOrder.save()
 
-    res.save('order added')
+    res.send(JSON.stringify({ url: 'http://localhost:5173/success' }))
 }
 
 exports.createOrder = createOrder 
