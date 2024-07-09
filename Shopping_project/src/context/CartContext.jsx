@@ -67,7 +67,7 @@ export function CardProvider ({ children }) {
     }
 
 
-    const contextValue = {
+    const ContextValue = {
         items: cartProduct,
         getProductQuantity,
         addProduct,
@@ -77,6 +77,6 @@ export function CardProvider ({ children }) {
     }
 
     return (
-        <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
+        <CartContext.Provider value={ContextValue}>{children}</CartContext.Provider>
     )
 }
