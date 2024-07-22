@@ -7,7 +7,7 @@ import pause_icon from '../../assets/pause_icon.png'
 export default function Hero({heroData, setHeroCount,heroCount, setPlayStatus, playStatus}) {
   return (
     <div className='hero'>
-      <div className="heroText">
+      <div className="hero-text">
         <p>{heroData.text1}</p>
         <p>{heroData.text2}</p>
       </div>
