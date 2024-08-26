@@ -7,6 +7,7 @@ import reactImg from '../../assets/images/react.png'
 import bootstrapImg from '../../assets/images/bootstrap.jpeg'
 import htmlCssImg from '../../assets/images/html-css.jpg'
 import javascript from '../../assets/images/java-script.jpg'
+import Footer from '../../components/footer/Footer';
 
 function Home() {
 
@@ -73,6 +74,8 @@ function Home() {
                     ))}
                 </Row>
             </Container>
+
+            <Footer/>
         </div>
     );
 }
