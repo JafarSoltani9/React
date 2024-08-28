@@ -1,0 +1,35 @@
+.course-card {
+  width: 18rem; /* Fixed width for all cards */
+  height: 25rem; /* Fixed height for all cards */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  height: 10rem; /* Fixed height for all images */
+  object-fit: cover; /* Ensures images cover the area without distortion */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.card-title,
+.card-text {
+  margin-left: 0;
+}
+
+button {
+  align-self: flex-start; /* Aligns the button to the left */
+}
+
+.buy-btn {
+  text-decoration: none;
+  color: white;
+}
+.buy-btn:hover{
+  color: black;
+}

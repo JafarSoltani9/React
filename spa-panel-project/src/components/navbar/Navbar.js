@@ -22,7 +22,7 @@ function MyNavbar() {
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
                             <NavLink to='/' className='nav-link'>Home</NavLink>
-                            <NavLink to ='/about' className='nav-link'>About Us</NavLink>
+                            <NavLink to ='/about' className='nav-link'>About Me</NavLink>
                             <NavLink to='/article' className='nav-link'>Article</NavLink>
                             <NavLink to='/panel' className='nav-link'>Panel</NavLink>
                             <NavLink to='/login' className='nav-link'>Login</NavLink>

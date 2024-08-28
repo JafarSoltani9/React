@@ -3,45 +3,17 @@ import MyNavbar from '../../components/navbar/Navbar';
 import programmingImg from '../../assets/images/programming.svg';
 import CourseItem from '../../components/course/CourseItem';
 import { useState } from 'react';
-import reactImg from '../../assets/images/react.png'
-import bootstrapImg from '../../assets/images/bootstrap.jpeg'
-import htmlCssImg from '../../assets/images/html-css.jpg'
-import javascript from '../../assets/images/java-script.jpg'
 import Footer from '../../components/footer/Footer';
+import { courseData } from '../../data';
 
 function Home() {
 
-    const [courses, setCourses] = useState([
-        {
-            id: 1,
-            title: 'React.js',
-            text : 'An introductory guide to help you understand the core concepts that underpin the React.js JavaScript framework.',
-            img : reactImg
-        },
-        {
-            id: 2,
-            title: 'Bootstrap',
-            text : 'Learn to customize and build modern websites from scratch using Bootstrap',
-            img : bootstrapImg
-        },
-        {
-            id: 3,
-            title: 'JavaScript',
-            text : 'An advanced JavaScript course for everyone! Scope, closures, prototypes, this, build your own framework, and more.',
-            img : javascript
-        },
-        {
-            id: 4,
-            title: 'HTML-CSS',
-            text : 'HTML and CSS for Beginners course will give your all the knowledge you need to master HTML and CSS easily and quickly.',
-            img : htmlCssImg
-        },
-    ]);
+    const [courses, setCourses] = useState(courseData);
 
     return (
         <div>
             <MyNavbar />
-            <Container>
+            <Container fluid='md'>
                 <Row className='my-5 align-items-center'>
                     <Col lg={6} className='order-lg-2'>
                         <h1>Introduction to Programming</h1> 
@@ -58,21 +30,15 @@ function Home() {
                     </Col>
                 </Row>
 
-                <Row className='my-5 g-4 justify-content-center'>
+                <Row className='my-5'>
                     <h2 className='py-4'>Development Courses</h2>
-
                     {courses.map(course => (
-                        <Col key={course.id} className='d-flex align-items-stretch' md={6} lg={4} xl={3}>
-                            <div className="card h-100 text-center">
-                                <img src={course.img} alt={course.title} className="card-img-top img-fluid" style={{ height: '200px', objectFit: 'cover' }} />
-                                <div className="card-body d-flex flex-column">
-                                    <h5 className="card-title">{course.title}</h5>
-                                    <p className="card-text">{course.text}</p>
-                                </div>
-                            </div>
+                        <Col key={course.id} className='py-3' md={6} lg={4} xl={3}>
+                        <CourseItem {...course} />
                         </Col>
                     ))}
                 </Row>
+
             </Container>
 
             <Footer/>
