@@ -4,7 +4,7 @@ function Panel() {
     return (
         <div>
             <MyNavbar />
-            <h1>Panel page</h1>
+            <h1 style={{textAlign: 'center'}}>Panel page</h1>
         </div>
     )
 }
