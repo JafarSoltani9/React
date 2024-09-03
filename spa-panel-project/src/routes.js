@@ -4,6 +4,8 @@ import Article from './pages/article/Article'
 import Login from './pages/login/Login'
 import Panel from './pages/panel/Panel'
 import Course from './pages/course/Course'
+import Setting from './pages/Setting'
+import PrivateRoute from './components/PrivateRoute'
 const routes = [
     {path: '/', element: <Home/>},
     {path: '/about', element: <About/>},
@@ -14,7 +16,8 @@ const routes = [
 
     ]},
     {path: '/login', element: <Login/>},
-    {path: '/panel', element: <Panel/>},
+    {path: '/panel', element: <PrivateRoute><Panel/></PrivateRoute>},
+    {path: '/setting', element: <PrivateRoute><Setting/></PrivateRoute>},
     {path: '/course/:courseId', element: <Course/>},
 ]
 export default routes
