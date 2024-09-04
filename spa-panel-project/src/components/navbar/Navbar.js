@@ -4,8 +4,15 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import './Navbar.css'
+import { useState } from 'react';
+import { isLogin } from '../../Utils'
 
 function MyNavbar() {
+    const [loginStatus , setLoginStatus] = useState(isLogin() ? 'Exit' : 'Login'  )
+    const loginHandler = () =>{
+        document.cookie = "username=admin; expires=Thu, 18 Dec 2015 12:00:00 UTC";
+        setLoginStatus('Login')
+    }
     return (
         <Navbar style={{backgroundColor:'rgb(186,182,253)'}} expand="lg" >
             <Container>
@@ -25,7 +32,9 @@ function MyNavbar() {
                             <NavLink to ='/about' className='nav-link'>About Me</NavLink>
                             <NavLink to='/article' className='nav-link'>Article</NavLink>
                             <NavLink to='/panel' className='nav-link'>Panel</NavLink>
-                            <NavLink to='/login' className='nav-link'>Login</NavLink>
+                            {isLogin() ? 
+                            <NavLink to='/login' onClick={loginHandler} className='nav-link'>{loginStatus}</NavLink>
+                            : <NavLink to='/login' className='nav-link'>{loginStatus}</NavLink>}
                             
                         </Nav>
                     </Offcanvas.Body>
