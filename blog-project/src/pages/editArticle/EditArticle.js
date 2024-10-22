@@ -1,7 +1,10 @@
-
+import MyNavbar from "../../components/navbar/Navbar"
 function EditArticle () {
     return(
-        <h1>Edit Article page</h1>
+        <>
+            <MyNavbar/>
+            <h1>Edit Article Page</h1>
+        </>
     )
 }
 

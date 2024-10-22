@@ -1,8 +1,11 @@
-
+import MyNavbar from "../../components/navbar/Navbar"
 
 function Article () {
     return(
-        <h1>Article page</h1>
+        <>
+            <MyNavbar/>
+            <h1>Article Page</h1>
+        </>
     )
 }
 
