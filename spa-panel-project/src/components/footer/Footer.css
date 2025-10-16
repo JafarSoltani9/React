@@ -1,0 +1,11 @@
+
+footer{
+    background-color: #beb6cf;
+    padding: 30px 10px;
+}
+
+.footerImg {
+    width: 90px;
+    height: 90px;
+    border-radius: 15px;
+}

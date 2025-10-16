@@ -1,0 +1,242 @@
+/* ---------- Base ---------- */
+:root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-600: #1d4ed8;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --ring: rgba(37, 99, 235, 0.25);
+  --border: #e5e7eb;
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 800px at 80% -10%, #e9efff 0%, transparent 60%) var(--bg);
+  color: var(--text);
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Layout container ---------- */
+.container {
+  max-width: 860px;
+  margin: 48px auto;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Headings, texts ---------- */
+h3 {
+  margin: 0 0 16px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+#result-text h2 {
+  margin: 0 0 8px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+#result-text p {
+  margin: 0;
+  color: var(--muted);
+}
+
+#result-text span {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ---------- Options (categories) ---------- */
+#options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+  text-transform: capitalize;
+}
+
+#options-container > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.options {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.options:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.08);
+}
+
+.options:active {
+  transform: translateY(0);
+}
+
+.options.active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 6px var(--ring);
+}
+
+/* ---------- Letters row ---------- */
+#letter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 18px 0 16px;
+}
+
+.letter-container.hide {
+  display: none !important;
+}
+
+.letters {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms ease, box-shadow 120ms ease, transform 120ms ease, border-color 120ms ease;
+}
+
+.letters:hover {
+  background: #f9fafb;
+  transform: translateY(-1px);
+}
+
+.letters:active {
+  transform: translateY(0);
+}
+
+.letters:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- Word display ---------- */
+#user-input-section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 18px;
+  font-size: clamp(22px, 4vw, 34px);
+  letter-spacing: 0.06em;
+}
+
+.dashes {
+  display: inline-block;
+  min-width: 0.7em;
+  text-align: center;
+  border-bottom: 3px solid var(--border);
+  padding: 2px 2px 4px;
+  border-radius: 2px;
+}
+
+/* ---------- Canvas (gallows) ---------- */
+#canvas {
+  display: block;
+  margin: 10px auto 6px;
+  width: min(320px, 92%);
+  height: auto;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* ---------- New game popup ---------- */
+.new-game-popup {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  background: #fafafa;
+  text-align: center;
+}
+
+.new-game-popup.hide {
+  display: none !important;
+}
+
+#new-game-btn {
+  margin-top: 12px;
+  appearance: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--primary);
+  color: #fff;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+#new-game-btn:hover {
+  background: var(--primary-600);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+  transform: translateY(-1px);
+}
+
+#new-game-btn:active {
+  transform: translateY(0);
+}
+
+/* ---------- Status colors ---------- */
+.win-msg {
+  color: var(--success);
+}
+
+.lose-msg {
+  color: var(--danger);
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 520px) {
+  .container {
+    margin: 24px auto;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .letters {
+    min-width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  #user-input-section {
+    font-size: clamp(20px, 6vw, 28px);
+  }
+}
