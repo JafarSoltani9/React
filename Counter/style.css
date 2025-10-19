@@ -13,7 +13,7 @@
 }
 
 input {
-    width: 110px;
+    width: 100px;
     height: 10px;
     font-size: 1rem;
     border: 4px solid #4468f8;
@@ -28,10 +28,42 @@ input {
     cursor: pointer;
     border: 4px solid #4468f8;
     border-radius: 5px;
-        font-size: 1rem;
+    font-size: 1rem;
+    background-color: white;
+
 }
 #countByBtn:hover {
     background-color: #4468f8;
     color: white;
     transition: 0.3s;
+}
+#submitByBtn:disabled {
+    background-color: limegreen;
+    color: black;
+    border: 2px solid limegreen;
+    cursor: not-allowed';
+}
+#startBtn {
+    width: 100px;
+    height: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: 4px solid #4468f8;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 40px;
+}
+
+#startBtn:hover {
+    background-color: #4468f8;
+    color: white;
+    transition: 0.3s;
+}
+
+#submitByBtn:disabled {
+    background-color: limegreen;
+    color: black;
+    border: 2px solid limegreen;
+    cursor: not-allowed';
 }
