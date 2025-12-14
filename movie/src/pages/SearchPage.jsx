@@ -11,13 +11,35 @@ export default function SearchPage() {
   const [error, setError] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
 
+  function handleQueryChange(value) {
+    setQuery(value);
+
+    // If the input is cleared, reset UI + results
+    if (value.trim() === "") {
+      setMovies([]);
+      setError(null);
+      setHasSearched(false);
+      setLoading(false);
+    }
+  }
+
   async function handleSearch() {
+    const q = query.trim();
+    if (!q) {
+      // If user clicks Search with empty input, just reset
+      setMovies([]);
+      setError(null);
+      setHasSearched(false);
+      setLoading(false);
+      return;
+    }
+
     setHasSearched(true);
     setLoading(true);
     setError(null);
 
     try {
-      const result = await searchMovies(query);
+      const result = await searchMovies(q);
       setMovies(result.movies);
       setError(result.error);
     } catch (e) {
@@ -42,7 +64,7 @@ export default function SearchPage() {
 
       <SearchBar
         query={query}
-        onQueryChange={setQuery}
+        onQueryChange={handleQueryChange}
         onSearch={handleSearch}
         disabled={loading}
       />
