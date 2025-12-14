@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { getMovieDetails } from "../services/movieApi";
 import placeholderPoster from "../assets/placeholder-poster.png";
 import StatusMessage from "../components/StatusMessage";
+import styles from "./MovieDetailsPage.module.css";
 
 export default function MovieDetailsPage() {
   const { imdbID } = useParams();
@@ -36,40 +37,30 @@ export default function MovieDetailsPage() {
     movie?.Poster && movie.Poster !== "N/A" ? movie.Poster : placeholderPoster;
 
   return (
-    <div style={{ maxWidth: 980, margin: "0 auto", padding: 18 }}>
-      <Link to="/" style={{ display: "inline-block", marginBottom: 12 }}>
+    <div className={styles.page}>
+      <Link to="/" className={styles.backLink}>
         ← Back
       </Link>
 
-      {loading && (
-        <StatusMessage type="loading" message="Fetching details..." />
-      )}
+      {loading && <StatusMessage type="loading" message="Fetching details..." />}
       {error && <StatusMessage type="error" message={error} />}
 
       {movie && !loading && !error && (
-        <div
-          style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 16 }}
-        >
-          <img
-            src={poster}
-            alt={movie.Title}
-            style={{
-              width: "100%",
-              borderRadius: 12,
-              border: "1px solid #444",
-            }}
-          />
+        <div className={styles.layout}>
+          <img src={poster} alt={movie.Title} className={styles.poster} />
 
           <div>
-            <h1 style={{ marginTop: 0 }}>
+            <h1 className={styles.title}>
               {movie.Title} ({movie.Year})
             </h1>
-            <div style={{ opacity: 0.85, marginBottom: 10 }}>
+
+            <div className={styles.meta}>
               {movie.Genre} • {movie.Runtime} • IMDb: {movie.imdbRating}
             </div>
-            <p style={{ lineHeight: 1.6 }}>{movie.Plot}</p>
 
-            <div style={{ marginTop: 12, opacity: 0.9 }}>
+            <p className={styles.plot}>{movie.Plot}</p>
+
+            <div className={styles.extra}>
               <div>
                 <b>Director:</b> {movie.Director}
               </div>

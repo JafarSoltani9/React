@@ -1,3 +1,5 @@
+import styles from "./StatusMessage.module.css";
+
 export default function StatusMessage({ type, message }) {
   if (!message) return null;
 
@@ -8,14 +10,7 @@ export default function StatusMessage({ type, message }) {
     "ℹ️ ";
 
   return (
-    <div
-      style={{
-        padding: 12,
-        borderRadius: 10,
-        border: "1px solid #444",
-        marginTop: 12,
-      }}
-    >
+    <div className={styles.box}>
       <span>{prefix}{message}</span>
     </div>
   );

@@ -3,6 +3,7 @@ import SearchBar from "../components/SearchBar";
 import MovieList from "../components/MovieList";
 import StatusMessage from "../components/StatusMessage";
 import { searchMovies } from "../services/movieApi";
+import styles from "./SearchPage.module.css";
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
@@ -58,20 +59,24 @@ export default function SearchPage() {
     null;
 
   return (
-    <div style={{ maxWidth: 980, margin: "0 auto", padding: 18 }}>
-      <h1 style={{ marginBottom: 6 }}>Movie Search</h1>
-      <div style={{ opacity: 0.8 }}>Search movies and click to view details.</div>
-
-      <SearchBar
-        query={query}
-        onQueryChange={handleQueryChange}
-        onSearch={handleSearch}
-        disabled={loading}
-      />
-
-      {status && <StatusMessage type={status.type} message={status.msg} />}
-
-      {movies.length > 0 && <MovieList movies={movies} />}
+  <div className={styles.page}>
+    <div className={styles.header}>
+      <h1 className={styles.title}>Movie Search</h1>
+      <div className={styles.subtitle}>
+        Search movies and click to view details.
+      </div>
     </div>
-  );
+
+    <SearchBar
+      query={query}
+      onQueryChange={handleQueryChange}
+      onSearch={handleSearch}
+      disabled={loading}
+    />
+
+    {status && <StatusMessage type={status.type} message={status.msg} />}
+
+    {movies.length > 0 && <MovieList movies={movies} />}
+  </div>
+);
 }
