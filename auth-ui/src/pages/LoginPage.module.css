@@ -1,0 +1,53 @@
+.page {
+  max-width: 420px;
+  margin: 70px auto;
+  padding: 18px;
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e2e6ea;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.title {
+  margin: 0 0 14px 0;
+  font-size: 28px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+.input {
+  padding: 11px 12px;
+  border-radius: 10px;
+  border: 1px solid #cfd6dd;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #7aa7ff;
+  box-shadow: 0 0 0 3px rgba(122, 167, 255, 0.25);
+}
+
+.button {
+  padding: 11px 12px;
+  border-radius: 10px;
+  border: 1px solid #111;
+  background: #111;
+  color: white;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  border: 1px solid #e06a6a;
+  background: #fff0f0;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}

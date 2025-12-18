@@ -1,0 +1,37 @@
+.page {
+  max-width: 820px;
+  margin: 40px auto;
+  padding: 18px;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e2e6ea;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+}
+
+.text {
+  margin: 0 0 16px 0;
+  opacity: 0.9;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  padding: 11px 12px;
+  border-radius: 10px;
+  border: 1px solid #111;
+  background: #111;
+  color: white;
+  cursor: pointer;
+}
