@@ -12,17 +12,29 @@ export default function LoginPage() {
   const location = useLocation();
   const redirectTo = location.state?.from || "/dashboard";
 
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     setError(null);
 
-    if (!email.trim() || !password.trim()) {
+    const emailValue = email.trim();
+    const passwordValue = password.trim();
+
+    if (!emailValue || !passwordValue) {
       setError("Please enter email and password.");
       return;
     }
 
-    // Fake login: accept any email/password
-    login(email.trim());
+    if (!isValidEmail(emailValue)) {
+      setError("Please enter a valid email address (e.g. name@example.com).");
+      return;
+    }
+
+    
+    login(emailValue);
     navigate(redirectTo, { replace: true });
   }
 
@@ -34,9 +46,11 @@ export default function LoginPage() {
         <input
           className={styles.input}
           placeholder="Email"
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           autoComplete="email"
+          required
         />
 
         <input
@@ -46,6 +60,7 @@ export default function LoginPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
+          required
         />
 
         <button className={styles.button} type="submit">
