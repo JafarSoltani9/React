@@ -1,74 +1,90 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { login } from "../auth/auth";
-import styles from "./LoginPage.module.css";
+import styles from "./AuthPage.module.css";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
   const redirectTo = location.state?.from || "/dashboard";
 
-  function isValidEmail(value) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-  }
-
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    setError(null);
+    setError("");
 
-    const emailValue = email.trim();
-    const passwordValue = password.trim();
+    const e2 = email.trim().toLowerCase();
+    const p2 = password.trim();
 
-    if (!emailValue || !passwordValue) {
-      setError("Please enter email and password.");
-      return;
+    if (!e2) return setError("Email is required.");
+    if (!p2) return setError("Password is required.");
+
+    setLoading(true);
+    try {
+      await login(e2, p2);
+      navigate(redirectTo, { replace: true });
+    } catch (err) {
+      setError(err?.message || "Login failed.");
+    } finally {
+      setLoading(false);
     }
-
-    if (!isValidEmail(emailValue)) {
-      setError("Please enter a valid email address (e.g. name@example.com).");
-      return;
-    }
-
-    
-    login(emailValue);
-    navigate(redirectTo, { replace: true });
   }
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Login</h1>
+      <div className={styles.card}>
+        <h1 className={styles.title}>Login</h1>
 
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <input
-          className={styles.input}
-          placeholder="Email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          autoComplete="email"
-          required
-        />
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div>
+            <div className={styles.label}>Email</div>
+            <input
+              className={styles.input}
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+            />
+          </div>
 
-        <input
-          className={styles.input}
-          placeholder="Password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
-          required
-        />
+          <div>
+            <div className={styles.label}>Password</div>
+            <input
+              className={styles.input}
+              type="password"
+              placeholder="Your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+            />
+          </div>
 
-        <button className={styles.button} type="submit">
-          Sign in
-        </button>
+          <button className={styles.button} type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
 
-        {error && <div className={styles.error}>{error}</div>}
-      </form>
+          {error && <div className={styles.error}>{error}</div>}
+
+          <div className={styles.linksRow}>
+            <Link className={styles.link} to="/register">
+              Create account
+            </Link>
+
+            <Link className={styles.link} to="/forgot-password">
+              Forgot password?
+            </Link>
+          </div>
+
+          <div className={styles.note}>
+            Tip: make sure your backend is running and Vite proxy points to it.
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
