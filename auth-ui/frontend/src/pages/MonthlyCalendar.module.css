@@ -1,0 +1,144 @@
+.wrapper {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.month {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.yearPill {
+  border: 1px solid rgba(0,0,0,0.25);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-weight: 700;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 14px;
+}
+
+.calendarBox {
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Notes panel */
+.notes {
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.notesTitle {
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  background: #fafafa;
+}
+
+.dots {
+  height: 100%;
+  min-height: 320px;
+  background-image: radial-gradient(rgba(0,0,0,0.22) 1px, transparent 1px);
+  background-size: 10px 10px;
+  background-position: 2px 2px;
+}
+
+/* ---- react-calendar overrides (make it look like grid) ---- */
+:global(.react-calendar) {
+  width: 100%;
+  border: none;
+  font-family: inherit;
+}
+
+:global(.react-calendar__navigation) {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+:global(.react-calendar__navigation button) {
+  border: 1px solid rgba(0,0,0,0.2);
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+:global(.react-calendar__month-view__weekdays) {
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+:global(.react-calendar__month-view__weekdays__weekday) {
+  padding: 10px 6px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+:global(.react-calendar__month-view__days) {
+  border-left: 1px solid rgba(0,0,0,0.15);
+  border-top: 1px solid rgba(0,0,0,0.15);
+}
+
+/* TODAY (auto highlight) */
+:global(.react-calendar__tile--now) {
+  background: #1d4ed8 !important; /* blue */
+  color: #fff !important;
+  border-radius: 8px;
+}
+
+/* Make today's number bold */
+:global(.react-calendar__tile--now abbr) {
+  font-weight: 900 !important;
+  color: #fff !important;
+}
+
+/* SELECTED (clicked) day */
+:global(.react-calendar__tile--active) {
+  background: #93c5fd !important; /* light blue */
+  color: #111 !important;
+  border-radius: 8px;
+}
+
+/* If today is also selected, keep it blue (not light blue) */
+:global(.react-calendar__tile--now.react-calendar__tile--active) {
+  background: #1d4ed8 !important;
+  color: #fff !important;
+}
+
+:global(.react-calendar__tile--now.react-calendar__tile--active abbr) {
+  font-weight: 900 !important;
+  color: #fff !important;
+}
+
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .dots {
+    min-height: 200px;
+  }
+}
