@@ -43,6 +43,8 @@
   border: 1px solid rgba(0,0,0,0.18);
   border-radius: 10px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .notesTitle {
@@ -54,12 +56,139 @@
   background: #fafafa;
 }
 
-.dots {
-  height: 100%;
+/* Note input area */
+.noteInput {
+  padding: 12px;
+  border-top: 1px solid rgba(0,0,0,0.15);
+  background: #fafafa;
+}
+
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 80px;
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  margin-bottom: 8px;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #1d4ed8;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.saveButton {
+  flex: 1;
+  padding: 8px 16px;
+  background: #1d4ed8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.saveButton:hover {
+  background: #1e40af;
+}
+
+.cancelButton {
+  flex: 1;
+  padding: 8px 16px;
+  background: #6b7280;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cancelButton:hover {
+  background: #4b5563;
+}
+
+/* Notes display area */
+.notesContent {
+  padding: 16px;
   min-height: 320px;
-  background-image: radial-gradient(rgba(0,0,0,0.22) 1px, transparent 1px);
-  background-size: 10px 10px;
-  background-position: 2px 2px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.notesList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.noteItem {
+  position: relative;
+  padding: 12px;
+  padding-right: 36px;
+  background: #f9fafb;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.noteItem:hover {
+  background: #f3f4f6;
+  border-color: #1d4ed8;
+}
+
+.noteItemEditing {
+  background: #dbeafe;
+  border-color: #1d4ed8;
+}
+
+.noteText {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.deleteIconButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: #dc2626;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.deleteIconButton:hover {
+  background: #b91c1c;
+}
+
+.noSelection {
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+  padding-top: 40px;
 }
 
 /* ---- react-calendar overrides (make it look like grid) ---- */
@@ -138,7 +267,7 @@
   .layout {
     grid-template-columns: 1fr;
   }
-  .dots {
+  .notesContent {
     min-height: 200px;
   }
 }
